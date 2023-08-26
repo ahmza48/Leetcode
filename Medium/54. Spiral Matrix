@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> spiralOutput;
+        
+        int rows = matrix.size();
+        int columns = matrix[0].size();
+        int totalElements = rows * columns; //total elements in matrix
+        int top = 0; // Will represent start index of row
+        int bottom = rows - 1; // Will represent end index of row(initially represent last row)
+        int left = 0; // Will represent start index of column
+        int right = columns - 1; // Will represent end index of column (initially represents last column of matrix)
+        
+        while (spiralOutput.size() < totalElements) {
+            // Traverse top row
+            for (int j = left; j <= right && spiralOutput.size() < totalElements; j++) {
+                spiralOutput.push_back(matrix[top][j]);
+            }
+            //incrementing because one row is traversed
+            top++;
+            
+            // Traverse right column
+            for (int i = top; i <= bottom && spiralOutput.size() < totalElements; i++) {
+                spiralOutput.push_back(matrix[i][right]);
+            }
+            //decrementing because now we want to go backwards excluding current element
+            right--;
+            
+            // Traverse bottom row
+            for (int j = right; j >= left && spiralOutput.size() < totalElements; j--) {
+                spiralOutput.push_back(matrix[bottom][j]);
+            }
+            //decrementing because now we want to go upwards excluding current element
+            bottom--;
+            
+            // Traverse left column
+            for (int i = bottom; i >= top && spiralOutput.size() < totalElements; i--) {
+                spiralOutput.push_back(matrix[i][left]);
+            }
+            left++;
+        }
+        
+        return spiralOutput;
+    }
+};
+
