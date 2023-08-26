@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int,int> myMap;
+        bool found=false;
+        for(int i=0; i<nums.size();i++){
+            if(myMap.find(nums[i])!=myMap.end()){
+                found=true;
+            }else{
+                myMap[nums[i]]=i;
+            }
+        }
+        return found;
+    }
+};
